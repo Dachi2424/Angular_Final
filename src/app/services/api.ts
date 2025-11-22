@@ -11,12 +11,12 @@ export class Api {
   }
 
   //products
-  productsAll(){
-    return this.api.get(`https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=16`)
+  productsAll(pageIndex:any, pageSize:any){
+    return this.api.get(`https://api.everrest.educata.dev/shop/products/all?page_index=${pageIndex}&page_size=${pageSize}`)
   }
 
-  productsSearch(keywords:any, categoryId:any, selectedBrands:any, rating:any, minPrice:any, maxPrice:any) {
-    let url = "https://api.everrest.educata.dev/shop/products/search?page_index=1&page_size=16"
+  productsSearch(pageIndex:any, keywords:any, categoryId:any, selectedBrands:any, rating:any, minPrice:any, maxPrice:any) {
+    let url = `https://api.everrest.educata.dev/shop/products/search?page_index=${pageIndex}&page_size=16`
     if (keywords) url += `&keywords=${keywords}`
     if (categoryId) url += `&category_id=${categoryId}`
     if (selectedBrands) url += `&brand=${selectedBrands}`

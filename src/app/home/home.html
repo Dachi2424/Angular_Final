@@ -71,5 +71,18 @@
         <img class="no-product-image" src="/no-product-found.png" alt="">
       }
     </div>
+    <div class="page-navigator-container">
+      <div class="navigator-box" (click)="reducePage()">
+        <span class="navigator-box__arrow">&lt; Prev</span>
+      </div>
+      @for (item of loopXTimes; track $index) {
+      <div (click)="changePage($index + 1)" [style.backgroundColor]="currentPage == $index + 1 ? '#c29115' : '#FCBD20'" class="navigator-box navigator-box--index">
+        <span class="navigator-box__page-index">{{$index + 1}}</span>
+      </div>
+      }
+      <div class="navigator-box" (click)="increasePage()">
+        <span class="navigator-box__arrow">Next &gt;</span>
+      </div>
+    </div>
   </div>
 </section>
