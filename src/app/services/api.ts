@@ -17,4 +17,8 @@ export class Api {
   productsSearch() {
     return this.api.get(`https://api.everrest.educata.dev/shop/products/search?page_index=1&page_size=16&brand=asus&rating=3&price_min=100&price_max=600`)
   }
+
+  productsCategories() {
+    return this.api.get("https://api.everrest.educata.dev/shop/products/categories")
+  }
 }

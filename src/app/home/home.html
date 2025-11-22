@@ -1,9 +1,42 @@
-
-<div class="wrapper">
+<main class="main">
+  <section class="banner">
+  </section>
+</main>
+<section class="wrapper">
   <aside class="filter">
     
   </aside>
-  <div class="products-container">
-
+  <div class="main-container">
+    <div class="category-container">
+      @for (category of allCategories; track $index) {
+        <div class="category-container__category">
+          <img class="category-container__category-image" [src]="category.image" alt="">
+          <span class="category-container__category-name">{{category.name}}</span>
+        </div>
+      }
+    </div>
+    <div class="products-container">
+      @for (product of allProducts; track $index) {
+        <div class="card">
+          <div class="card__images-container">
+            <img class="card__image card__image--primary" [src]="product.thumbnail" (error)="$event.target.src='/not_found.png'" alt="">            
+            <img class="card__image card__image--secondary" [src]="product.images[0]" (error)="$event.target.src='/not_found.png'" alt="">            
+          </div>
+          <div class="card__lower-side">
+            <h3 class="card__title">{{product.title}}</h3>
+            <p class="card__description">{{product.description}}</p>
+            <p class="card__rating">Rating: <span [style.color]="product.rating > 4 ? 'green' : product.rating > 3 ? 'limegreen' : product.rating > 2 ? 'orange' : 'red'">{{(product.rating).toFixed(1)}}</span>/5</p>
+            <div class="card__price-container">
+              @if (product.price.discountPercentage != 0) {
+                <span class="card__price card__price--new">{{product.price.current}} {{product.price.currency}}</span>
+                <span class="card__price card__price--old">{{product.price.beforeDiscount}} {{product.price.currency}}</span>
+              } @else if (product.price.discountPercentage == 0) {
+                <span class="card__price card__price--no-discount">{{product.price.current}} {{product.price.currency}}</span>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
   </div>
-</div>
+</section>
