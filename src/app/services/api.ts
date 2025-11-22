@@ -15,6 +15,10 @@ export class Api {
     return this.api.get(`https://api.everrest.educata.dev/shop/products/all?page_index=${pageIndex}&page_size=${pageSize}`)
   }
 
+  productWithId(id:any){
+    return this.api.get(`https://api.everrest.educata.dev/shop/products/id/${id}`)
+  }
+
   productsSearch(pageIndex:any, keywords:any, categoryId:any, selectedBrands:any, rating:any, minPrice:any, maxPrice:any) {
     let url = `https://api.everrest.educata.dev/shop/products/search?page_index=${pageIndex}&page_size=16`
     if (keywords) url += `&keywords=${keywords}`

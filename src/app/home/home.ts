@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Api } from '../services/api';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './home.scss',
 })
 export class Home {
-  constructor(public service: Api) {
+  constructor(public service: Api, private router: Router) {
     this.getAllCategories();
     this.getAllProducts();
     this.getAllBrands();
@@ -84,5 +85,10 @@ export class Home {
     this.service.productsSearch(this.currentPage, this.keywords, this.categoryId, this.selectedBrand, this.rating, this.minPrice, this.maxPrice).subscribe({
       next: (data:any) => this.allProducts = data.products
     })
+  }
+
+
+  goToDetails(productId:any){   
+    this.router.navigate(['/details'], {queryParams: {id: productId}})
   }
 }
