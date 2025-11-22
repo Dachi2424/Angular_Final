@@ -4,12 +4,38 @@
 </main>
 <section class="wrapper">
   <aside class="filter">
-    
+    <h2 class="filter__heading">Search Here</h2>
+    <input class="filter__search-input" type="text" placeholder="Search..." [(ngModel)]="keywords">
+    <h2 class="filter__heading">Category</h2>
+    <select [(ngModel)]="categoryId" class="filter__category-select">
+        <option value="">Select a Category</option>
+      @for (category of allCategories; track $index) {
+        <option [value]="category.id">{{category.name}}</option>
+      }
+    </select>
+    <h2 class="filter__heading">Brands</h2>
+    <ul class="filter__brands-container">
+      @for (brand of allBrands; track $index) {
+        <label class="filter__brand" (click)="pickBrand(brand)" [style.color]="brand == selectedBrand ? '#FCBD20' : 'black'">{{brand.toUpperCase()}}</label>
+      }
+    </ul>
+    <h2 class="filter__heading">Price</h2>
+    <div class="filter__price-container">
+      <input class="filter__price-input" type="text" placeholder="Min" [(ngModel)]="minPrice">
+      <input class="filter__price-input" type="text" placeholder="Max" [(ngModel)]="maxPrice">
+    </div>
+    <h2 class="filter__heading">Rating</h2>
+    <input class="filter__rating-input" type="range" min="1" max="5" [(ngModel)]="rating">
+    <button class="filter__filter-button" (click)="filterProducts()">Filter</button>
   </aside>
   <div class="main-container">
     <div class="category-container">
+      <div class="category-container__category category-container__category--all" (click)="getAllProducts()">
+        <img class="category-container__category-image category-container__category-image--all" src="/allCategories.png" alt="">
+        <span class="category-container__category-name">All</span>
+      </div>
       @for (category of allCategories; track $index) {
-        <div class="category-container__category">
+        <div class="category-container__category" (click)="pickCategory(category.id)">
           <img class="category-container__category-image" [src]="category.image" alt="">
           <span class="category-container__category-name">{{category.name}}</span>
         </div>
@@ -34,8 +60,15 @@
                 <span class="card__price card__price--no-discount">{{product.price.current}} {{product.price.currency}}</span>
               }
             </div>
+            <div class="card__buttons-container">
+              <button class="card__details-button">Go to details</button>
+              <div class="card__cart-container"><i class="fa-solid fa-basket-shopping filter__cart-icon"></i></div>
+            </div>
           </div>
         </div>
+      }
+      @empty {
+        <img class="no-product-image" src="/no-product-found.png" alt="">
       }
     </div>
   </div>
