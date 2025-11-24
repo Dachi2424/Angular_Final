@@ -53,6 +53,7 @@
 }
 .filter__brand {
   font-weight: 400;
+  cursor: pointer;
 }
 .filter__price-container {
   display: flex;
@@ -73,13 +74,50 @@
 }
 .filter__rating-input {
   width: 100%;
+  margin-bottom: 30px;
+}
+.filter__filter-button {
+  cursor: pointer;
+  height: 40px;
+  width: 100%;
+  background-color: #F7B81B;
+  border: 3px solid #c29115;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 .main-container {
+  min-height: 100vh;
   width: 85%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+.main-container .page-navigator-container {
+  margin: 30px 0 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.main-container .page-navigator-container .navigator-box {
+  height: 30px;
+  padding-inline: 10px;
+  background-color: #F7B81B;
+  border: 2px solid #c29115;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  cursor: pointer;
+}
+.main-container .page-navigator-container .navigator-box--index {
+  width: 40px;
+}
+.main-container .page-navigator-container .navigator-box__arrow {
+  font-weight: 400;
 }
 
 .category-container {
@@ -100,18 +138,36 @@
   border-radius: 5px;
   cursor: pointer;
 }
+.category-container__category--all {
+  justify-content: center;
+  gap: 8px;
+}
 .category-container__category-image {
   width: 30px;
   height: 30px;
   -o-object-fit: contain;
      object-fit: contain;
 }
+.category-container__category-image--all {
+  width: 44px;
+  height: 44px;
+}
 
 .products-container {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-rows: minmax(0, 45vw);
   gap: 20px;
+}
+
+.no-product-image {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .card {
@@ -155,7 +211,7 @@
   transition: opacity 0.3s;
 }
 .card__lower-side {
-  padding: 12px 12px 0;
+  padding: 12px 12px 12px;
   width: 100%;
   height: 50%;
   display: flex;
@@ -208,4 +264,31 @@
 .card__price--no-discount {
   color: black;
   font-size: 24px;
+}
+.card__buttons-container {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card__details-button {
+  height: 30px;
+  font-size: 15px;
+  border-radius: 4px;
+  border: 2px solid gray;
+  cursor: pointer;
+  width: 80%;
+  background-color: white;
+}
+.card__cart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F7B81B;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  border: 2px solid #c29115;
+  border-radius: 4px;
 }/*# sourceMappingURL=home.css.map */

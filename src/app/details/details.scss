@@ -1,0 +1,203 @@
+.product{
+  min-height: 80vh;
+  padding: 30px;
+  &__grid-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 4fr 4fr 4fr;
+    grid-auto-rows: minmax(0, 33vw);
+    gap: 10px;
+  }
+  &__images-container{
+    width: 100%;
+    height: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__main-image-container{
+    width: 100%;
+    height: 84%;
+    border: 1px solid gray;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  &__main-image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  &__side-images-container{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    height: 16%;
+    width: 100%;
+  }
+  &__side-image{
+    height: 100%;
+    width: 15%;
+    border: 1px solid gray;
+    border-radius: 5px; 
+    object-fit: contain;
+    cursor: pointer;
+    &--active{
+      border: 2px solid blue;
+    }
+  }
+
+  &__info-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 20px 0;
+  }
+  &__title{
+    font-weight: 600;
+    line-height: 40px;
+    font-size: 35px;
+    color:#C29115;
+  }
+  &__rating-container{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  &__rating-text{
+    font-weight: 400;
+    font-size: 20px;
+  }
+  &__star{
+    color: #FCBE21;
+    font-size: 20px;
+
+  }
+  &__half-star{
+    color: #FCBE21;
+    font-size: 20px;
+  }
+  &__stock-container{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  &__stock-x{
+    color: red;
+    font-size: 18px;
+  }
+  &__stock-check{
+    color: green;
+    font-size: 18px;
+  }
+  &__stock{
+    font-size: 18px;
+    &--false{
+      color: red;
+    }
+    &--true{
+      color: green;
+    }
+  }
+  &__info-ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 20px;
+  }
+  &__info-li{
+    color: rgb(97, 97, 97);
+  }
+
+  &__description{
+    color: rgb(97, 97, 97);
+    line-height: 22px;
+    font-size: 15px;
+  }
+  &__cart-container{
+    position: sticky;
+    top: 105px;
+    width: 100%;
+    height: 75%;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  &__discountPercentage{
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    background-color: #FCBE21;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 4px 9px;
+    box-shadow: -2px 2px 10px #FCBE21;
+
+  }
+  &__price-container{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  &__price{
+    font-weight: 600;
+    &--current{
+      color: green;
+      font-size: 36px;
+    }
+    &--old{
+      text-decoration: line-through;
+      color: black;
+      font-size: 18px;
+    }
+  }
+  &__quantity-container{
+    width: 120px;
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-radius: 5px;
+  }
+  &__quantity-button{
+    padding-inline: 10px;
+    font-size: 24px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  &__cart-quantity{
+    font-size: 22px;
+    font-weight: 600;
+  }
+  &__addtocart-button{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #FCBE21;
+    border: 2px solid #C29115;
+    font-size: 17px;
+    cursor: pointer;
+  }
+  &__cart-icon{
+    font-size: 20px;
+  }
+  &__warranty-text{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  &__warranty{
+    font-size: 26px;
+    font-weight: 600;
+    color: green;
+  }
+}
