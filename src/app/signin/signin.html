@@ -1,1 +1,28 @@
-<p>signin works!</p>
+
+<section class="signin">
+  <form [formGroup]="formInfo" (ngSubmit)="signInAccount()" class="signin__form">
+    <h1 class="signin__signin-text">Sign In</h1>
+    <div class="signin__input-container">
+      <label class="signin__label" for="email">Email</label>
+      <input class="signin__input" id="email" type="email" formControlName="email">
+    </div>
+    <div class="signin__input-container">
+      <label class="signin__label" for="password">Password</label>
+      <input class="signin__input" id="password" type="password" formControlName="password">
+    </div>
+    <div class="signin__error-field">
+      @if (formInfo.get('email')?.touched && formInfo.get('email')?.invalid && formInfo.get('email')?.dirty) {
+        <p class="signin__error-text">email syntax is wrong <i class="fa-regular fa-circle-xmark"></i></p>
+      } @else if (formInfo.get('email')?.touched && formInfo.get('email')?.valid && formInfo.get('email')?.dirty) {
+        <p class="signin__error-text signin__error-text--valid">email syntax is right <i class="fa-regular fa-circle-check"></i></p>
+      }
+      @if (formInfo.get('password')?.touched && formInfo.get('password')?.invalid && formInfo.get('password')?.dirty) {
+        <p class="signin__error-text">password must contain at least 6 characters <i class="fa-regular fa-circle-xmark"></i></p>
+      }@else if (formInfo.get('password')?.touched && formInfo.get('password')?.valid && formInfo.get('password')?.dirty) {
+        <p class="signin__error-text signin__error-text--valid">password syntax is right <i class="fa-regular fa-circle-check"></i></p>
+      }
+    </div>
+    <button class="signin__submit-button" type="submit">Sign In</button>
+    <p class="signin__dont-have-an-acc">don't have an account? <span class="signin__signup-link" routerLink="/signup">sign up</span></p>
+  </form>
+</section>

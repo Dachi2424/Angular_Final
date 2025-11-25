@@ -48,4 +48,12 @@ export class Api {
   signUp(body:any){
     return this.api.post("https://api.everrest.educata.dev/auth/sign_up", body)
   }
+
+  signIn(body:any){
+    return this.api.post("https://api.everrest.educata.dev/auth/sign_in", body)
+  }
+
+  auth() {
+    return this.api.get(`https://api.everrest.educata.dev/auth`)
+  }
 }
