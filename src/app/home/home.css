@@ -142,6 +142,9 @@
   justify-content: center;
   gap: 8px;
 }
+.category-container__category--picked {
+  background-color: #c29115;
+}
 .category-container__category-image {
   width: 30px;
   height: 30px;

@@ -1,50 +1,84 @@
 <section class="signup">
-  <form class="signup__form">
+  <form [formGroup]="formInfo" (ngSubmit)="signUp()" class="signup__form">
     <h2 class="signup__register-text">Register</h2>
     <div class="signup__input-container">
       <label for="fName" class="signup__label">First Name</label>
-      <input id="fName" type="text" class="signup__input">
+      <input id="fName" type="text" class="signup__input" formControlName="firstName">
     </div>
     <div class="signup__input-container">
       <label for="lName" class="signup__label">Last Name</label>
-      <input id="lName" type="text" class="signup__input">
+      <input id="lName" type="text" class="signup__input" formControlName="lastName">
     </div>
     <div class="signup__input-container">
       <label for="age" class="signup__label">Age</label>
-      <input id="age" type="text" class="signup__input">
+      <input id="age" type="text" class="signup__input" formControlName="age">
     </div>
     <div class="signup__input-container">
       <label for="email" class="signup__label">Email</label>
-      <input id="email" type="email" class="signup__input">
+      <input id="email" type="email" class="signup__input" formControlName="email">
     </div>
     <div class="signup__input-container">
       <label for="password" class="signup__label">Password</label>
-      <input id="password" type="password" class="signup__input">
+      <input id="password" type="password" class="signup__input" formControlName="password">
     </div>
     <div class="signup__input-container">
       <label for="address" class="signup__label">Address</label>
-      <input id="address" type="text" class="signup__input">
+      <input id="address" type="text" class="signup__input" formControlName="address">
     </div>
     <div class="signup__input-container">
       <label for="phone" class="signup__label">Phone</label>
-      <input id="phone" type="tel" class="signup__input">
+      <input id="phone" type="tel" class="signup__input" formControlName="phone">
     </div>
     <div class="signup__input-container">
       <label for="zipcode" class="signup__label">Zipcode</label>
-      <input id="zipcode" type="text" class="signup__input">
+      <input id="zipcode" type="text" class="signup__input" formControlName="zipcode">
     </div>
     <div class="signup__input-container">
       <label for="avatar" class="signup__label">Avatar</label>
-      <input id="avatar" type="text" class="signup__input">
+      <input id="avatar" type="text" class="signup__input" formControlName="avatar">
     </div>
     <div class="signup__input-container">
       <label for="gender" class="signup__label">Gender</label>
-      <select class="signup__input" id="gender">
+      <select class="signup__input" id="gender" formControlName="gender">
         <option value=""></option>
         <option value="MALE">Male</option>
         <option value="FEMALE">Female</option>
       </select>
     </div>
-    <button class="signup__submit-btn">Submit</button>
+    <div class="signup__error-field">
+      @if (formInfo.get("age")?.dirty && formInfo.get("age")?.touched && formInfo.get("age")?.invalid) {
+        <p class="signup__error-text">your age must be more than 18 <i class="fa-regular fa-circle-xmark"></i></p>
+      }
+      @else if (formInfo.get("age")?.dirty && formInfo.get("age")?.touched && formInfo.get("age")?.valid) {
+        <p class="signup__error-text signup__error-text--valid">you are of legal age <i class="fa-regular fa-circle-check"></i></p>
+      }
+      @if (formInfo.get("email")?.dirty && formInfo.get("email")?.touched && formInfo.get("email")?.invalid) {
+        <p class="signup__error-text">email must contain @ symbol <i class="fa-regular fa-circle-xmark"></i></p>
+      }
+      @else if (formInfo.get("email")?.dirty && formInfo.get("email")?.touched && formInfo.get("email")?.valid) {
+        <p class="signup__error-text signup__error-text--valid">solid email <i class="fa-regular fa-circle-check"></i></p>
+      }
+      @if (formInfo.get("password")?.dirty && formInfo.get("password")?.touched && formInfo.get("password")?.invalid) {
+        <p class="signup__error-text">password must have at least 8 characters <i class="fa-regular fa-circle-xmark"></i></p>
+      }
+      @else if (formInfo.get("password")?.dirty && formInfo.get("password")?.touched && formInfo.get("password")?.valid) {
+        <p class="signup__error-text signup__error-text--valid">strong password <i class="fa-regular fa-circle-check"></i></p>
+      }
+      @if (formInfo.get("phone")?.dirty && formInfo.get("phone")?.touched && formInfo.get("phone")?.invalid) {
+        <p class="signup__error-text">invalid phone number <i class="fa-regular fa-circle-xmark"></i></p>
+      }
+      @else if (formInfo.get("phone")?.dirty && formInfo.get("phone")?.touched && formInfo.get("phone")?.valid) {
+        <p class="signup__error-text signup__error-text--valid">correct phone number <i class="fa-regular fa-circle-check"></i></p>
+      }
+    </div>
+    <button class="signup__submit-btn" type="submit">Submit</button>
+    <p class="signup__existing-account-text">or <span routerLink="/signin" class="signup__signin-link">sign in</span> if you already have an account</p>
   </form>
+  
+  @if (successMessage) {
+    <div class="success">
+      <h1 class="success__text">Registration success!!! Check your email to verify your account</h1>
+    </div>
+    <div class="background"></div>
+  }
 </section>

@@ -15,6 +15,7 @@
 .header__logo {
   cursor: pointer;
   font-weight: 600;
+  color: #E19410;
 }
 .header__account-info {
   display: flex;
@@ -31,22 +32,30 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  border: 1px solid black;
+  background-color: #F7B81B;
+  border: 2px solid #E19410;
   height: 40px;
   width: 120px;
   border-radius: 5px;
   cursor: pointer;
+}
+.header__signin-container--active {
+  background-color: #E19410;
 }
 .header__signup-container {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  border: 1px solid black;
+  background-color: #F7B81B;
+  border: 2px solid #E19410;
   height: 40px;
   width: 120px;
   border-radius: 5px;
   cursor: pointer;
+}
+.header__signup-container--active {
+  background-color: #E19410;
 }
 
 .just-to-take-bg-space {

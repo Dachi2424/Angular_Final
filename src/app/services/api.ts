@@ -41,4 +41,11 @@ export class Api {
   productsCat(category:any){
     return this.api.get(`https://api.everrest.educata.dev/shop/products/category/${category}?page_index=1&page_size=16`)
   }
+
+
+  //auth
+
+  signUp(body:any){
+    return this.api.post("https://api.everrest.educata.dev/auth/sign_up", body)
+  }
 }

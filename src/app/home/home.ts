@@ -55,7 +55,9 @@ export class Home {
     })
   }
 
-  pickCategory(catId:any){
+  public pickedCategory:any = -1;
+  pickCategory(catId:any, index:any){
+    this.pickedCategory = index  
     this.service.productsCat(catId).subscribe((data:any) => {
       this.allProducts = data.products
     })

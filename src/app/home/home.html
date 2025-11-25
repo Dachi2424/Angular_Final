@@ -30,12 +30,12 @@
   </aside>
   <div class="main-container">
     <div class="category-container">
-      <div class="category-container__category category-container__category--all" (click)="getAllProducts()">
+      <div [class.category-container__category--picked]="pickedCategory == -1" class="category-container__category category-container__category--all" (click)="getAllProducts(); pickedCategory = -1">
         <img class="category-container__category-image category-container__category-image--all" src="/allCategories.png" alt="">
         <span class="category-container__category-name">All</span>
       </div>
       @for (category of allCategories; track $index) {
-        <div class="category-container__category" (click)="pickCategory(category.id)">
+        <div [class.category-container__category--picked]="pickedCategory == $index" class="category-container__category" (click)="pickCategory(category.id, $index)">
           <img class="category-container__category-image" [src]="category.image" alt="">
           <span class="category-container__category-name">{{category.name}}</span>
         </div>
