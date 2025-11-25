@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Api } from '../services/api';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -9,19 +11,30 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './signin.scss',
 })
 export class Signin {
-  constructor(public service: Api) {
+  constructor(public service: Api, private cookie: CookieService, public router: Router) {
 
   }
 
   public formInfo = new FormGroup({
-    email: new FormControl("", Validators.email),
-    password: new FormControl("", Validators.minLength(6))
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", [Validators.required, Validators.minLength(6)])
   })
 
+  public success!: boolean;
+  public authorized: boolean = false
   signInAccount(){
-    this.service.signIn(this.formInfo.value).subscribe( (data:any) => {
-      console.log(data);
-      
+    this.service.signIn(this.formInfo.value).subscribe({
+      next: (data:any) => {
+        this.cookie.set('user', data.access_token);
+        this.success = true
+        setTimeout(() => {
+          this.authorized = true;
+          this.router.navigate(['/']);
+        }, 3000)
+      },
+      error: (err) => {
+        this.success = false;
+      }
     })
   }
 

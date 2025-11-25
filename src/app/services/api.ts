@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { min } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Api {
-  constructor(private api: HttpClient) {
+  constructor(private api: HttpClient, private cookie: CookieService) {
 
   }
 
@@ -54,6 +55,6 @@ export class Api {
   }
 
   auth() {
-    return this.api.get(`https://api.everrest.educata.dev/auth`)
+    return this.api.get(`https://api.everrest.educata.dev/auth`, {headers: {Authorization: `Bearer ${this.cookie.get('user')}`}})
   }
 }

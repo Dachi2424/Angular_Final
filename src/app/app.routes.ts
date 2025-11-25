@@ -4,6 +4,7 @@ import { CartDetails } from './cart-details/cart-details';
 import { Details } from './details/details';
 import { Signin } from './signin/signin';
 import { Signup } from './signup/signup';
+import { Profile } from './profile/profile';
 
 export const routes: Routes = [
   {path: "", component: Home},
@@ -11,4 +12,5 @@ export const routes: Routes = [
   {path: "details", component: Details},
   {path: "signin", component: Signin},
   {path: "signup", component: Signup},
+  {path: "profile", component: Profile},
 ];

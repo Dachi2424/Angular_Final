@@ -25,4 +25,10 @@
     <button class="signin__submit-button" type="submit">Sign In</button>
     <p class="signin__dont-have-an-acc">don't have an account? <span class="signin__signup-link" routerLink="/signup">sign up</span></p>
   </form>
+  @if (success) {
+    <div class="success">
+      <h1 class="success__text">authorization success!!! happy shopping</h1>
+    </div>
+    <div class="background"></div>
+  }
 </section>
