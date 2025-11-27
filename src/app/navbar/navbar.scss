@@ -57,6 +57,37 @@
       background-color: #E19410;
     }
   }
+  &__profile-container{
+    min-width: 0px;
+    max-width: 200px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  &__user-avatar{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
+  &__logout-icon{
+    transform: rotate(180deg);
+  }
+  &__logout-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: #F7B81B;
+    border: 2px solid #E19410;
+    height: 40px;
+    width: 120px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
 }
 
 .just-to-take-bg-space{

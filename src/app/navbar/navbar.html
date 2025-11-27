@@ -1,15 +1,29 @@
 <header class="header">
   <h1 class="header__logo" routerLink="/">SHOPPING MALL</h1>
   <div class="header__account-info">
+    @if (!isLoggedIn) {
+      <div class="header__signin-container" routerLink="/signin" routerLinkActive="header__signin-container--active">
+        <i class="fa-regular fa-user"></i>
+        <span class="header__signin-text">Sign In</span>
+      </div>
+      <div class="header__signup-container" routerLink="/signup" routerLinkActive="header__signup-container--active">
+        <i class="fa-regular fa-id-badge"></i>
+        <span class="header__signup-text">Sign Up</span>
+      </div>
+    } 
+    @else if (isLoggedIn) {
+      <div class="header__profile-container" routerLink="/profile">
+        @if (userInfo) {
+          <img class="header__user-avatar" [src]="userInfo.avatar" alt="">
+          <span class="header__username">{{userInfo.firstName}}</span>
+        }
+      </div>
+      <div class="header__logout-container" (click)="logOut()">
+        <i class="fa-solid fa-arrow-right-from-bracket header__logout-icon"></i>
+        <span class="header__logout-text">Log Out</span>
+      </div>
+    }
     <i class="fa-solid fa-basket-shopping header__cart-logo"></i>
-    <div class="header__signin-container" routerLink="/signin" routerLinkActive="header__signin-container--active">
-      <i class="fa-regular fa-user"></i>
-      <span class="header__signin-text">Sign In</span>
-    </div>
-    <div class="header__signup-container" routerLink="/signup" routerLinkActive="header__signup-container--active">
-      <i class="fa-regular fa-id-badge"></i>
-      <span class="header__signup-text">Sign Up</span>
-    </div>
   </div>
 </header>
 <div class="just-to-take-bg-space"></div>

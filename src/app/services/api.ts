@@ -1,15 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { min } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class Api {
-  constructor(private api: HttpClient, private cookie: CookieService) {
-
-  }
+  constructor(private api: HttpClient, private cookie: CookieService) {}
 
   //products
   productsAll(pageIndex:any, pageSize:any){

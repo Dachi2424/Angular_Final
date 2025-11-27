@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Api } from '../services/api';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoggedIn } from '../services/logged-in';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class Home {
     this.getAllProducts();
     this.getAllBrands();
   }
-
+  
 
   public allProducts:any;
   public currentPage:number = 1;

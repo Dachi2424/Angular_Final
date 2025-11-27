@@ -3,6 +3,7 @@ import { Api } from '../services/api';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { LoggedIn } from '../services/logged-in';
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './signin.scss',
 })
 export class Signin {
-  constructor(public service: Api, private cookie: CookieService, public router: Router) {
+  constructor(public loggedInService: LoggedIn, public service: Api, private cookie: CookieService, public router: Router) {
 
   }
 
@@ -26,6 +27,7 @@ export class Signin {
     this.service.signIn(this.formInfo.value).subscribe({
       next: (data:any) => {
         this.cookie.set('user', data.access_token);
+        this.loggedInService.updateLoggedInStatus();
         this.success = true
         setTimeout(() => {
           this.authorized = true;
