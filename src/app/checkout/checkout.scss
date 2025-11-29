@@ -78,6 +78,26 @@
     border-radius: 5px;
     cursor: pointer;
   }
+  &__trash-icon{
+    cursor: pointer;
+  }
+  &__empty-container{
+    width: 50%;
+    margin: 50px auto 50px;
+  }
+  &__empty-image{
+    width: 100%;
+    height: 100%;
+  }
+  &__empty-text{
+    text-align: center;
+  }
+  &__shopping-link{
+    color: #E19410;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+  }
   &__product-quantity{
     width: 30px;
     text-align: center;

@@ -16,14 +16,19 @@
           </div>
           <div class="checkout__quantity-container">
             <button class="checkout__quantity-btn" (click)="decreaseQuantity(product._id, productArray[$index].quantity)">-</button>
-            <span class="checkout__product-quantity">{{productArray[$index].quantity}}</span>
+            <span class="checkout__product-quantity">{{product.cartQuantity}}</span>
             <button class="checkout__quantity-btn" (click)="increaseQuantity(product._id, productArray[$index].quantity)">+</button>
           </div>
-          <span class="checkout__product-price">{{product.price.current}}{{product.price.currency}}</span>
-          <i class="fa-solid fa-trash product__trash-icon"></i>
+          <span class="checkout__product-price">{{product.price.current * product.cartQuantity}}{{product.price.currency}}</span>
+          <i class="fa-solid fa-trash checkout__trash-icon" (click)="deleteItem(product._id)"></i>
         </div>
         }
-        
+        @empty {
+          <div class="checkout__empty-container">
+            <img class="checkout__empty-image" src="/empty_cart.png" alt="">
+            <p class="checkout__empty-text">No Products Found. <span class="checkout__shopping-link" routerLink="/">go shopping</span></p>
+          </div>
+        }
         
       </div>
     </div>
@@ -32,10 +37,10 @@
       <hr>
       <div class="checkout__summary-div">
         <span class="checkout__summary-item-quantity">TOTAL:</span>
-        <span class="checkout__summary-price">$50</span>
+        <span class="checkout__summary-price">{{totalPrice}}$</span>
       </div>
       <hr>
-      <button class="checkout__checkout-button">CHECKOUT</button>
+      <button class="checkout__checkout-button" (click)="checkoutCart()" [disabled]="dissableCheckout">CHECKOUT</button>
     </div>
   </div>
 </section>

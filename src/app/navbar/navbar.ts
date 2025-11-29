@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { LoggedIn } from '../services/logged-in';
 import { Api } from '../services/api';
 import { CookieService } from 'ngx-cookie-service';
@@ -14,7 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class Navbar implements OnInit{
   public isLoggedIn = false;
 
-  constructor(public loggedInService: LoggedIn, public service: Api, public cookie: CookieService) { }
+  constructor(public loggedInService: LoggedIn, public service: Api, public cookie: CookieService, public router: Router) { }
 
   ngOnInit(): void {
     this.loggedInService.loggedIn$.subscribe(status => {
@@ -31,8 +31,12 @@ export class Navbar implements OnInit{
   }
 
   logOut(){
-    this.cookie.delete('user');
-    this.loggedInService.updateLoggedInStatus()
+    let answer = confirm("are you sure you want to log out?")
+    if(answer){
+      this.cookie.delete('user');
+      this.loggedInService.updateLoggedInStatus()
+      this.router.navigate(['/'])
+    }
   }
 }
 

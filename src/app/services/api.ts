@@ -70,4 +70,14 @@ export class Api {
   deleteWholeCart(){
     return this.api.delete("https://api.everrest.educata.dev/shop/cart", {headers: {Authorization: `Bearer ${this.cookie.get('user')}`}})
   }
+  deleteCartId(id:any){
+    return this.api.delete("https://api.everrest.educata.dev/shop/cart/product", {
+      headers: {Authorization: `Bearer ${this.cookie.get('user')}`},
+      body: {id: id}
+    })
+  }
+  checkout(){
+    return this.api.post("https://api.everrest.educata.dev/shop/cart/checkout",null, {headers: {Authorization: `Bearer ${this.cookie.get('user')}`}})
+  }
 }
+
