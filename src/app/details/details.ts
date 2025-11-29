@@ -117,4 +117,21 @@ export class Details implements OnInit, OnDestroy{
       }
     })
   }
+
+
+  rate(){
+    let info = {
+      "productId": this.productId,
+      "rate": 5
+    }
+    
+    this.service.rateProduct(info).subscribe({
+      next: (data:any) => {console.log(data, "wow success")},
+      error: (err) => {console.error(err)}
+    })
+  }
+
+  showRate(){
+    
+  }
 }

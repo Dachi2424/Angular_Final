@@ -41,6 +41,10 @@ export class Api {
     return this.api.get(`https://api.everrest.educata.dev/shop/products/category/${category}?page_index=1&page_size=16`)
   }
 
+  rateProduct(body:any){
+    return this.api.post("https://api.everrest.educata.dev/shop/products/rate", body, {headers: {Authorization: `Bearer ${this.cookie.get('user')}`}})
+  }
+
 
   //auth
 
