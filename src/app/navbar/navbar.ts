@@ -27,7 +27,6 @@ export class Navbar implements OnInit{
   getUserInfo(){  
     this.service.auth().subscribe( (data:any) => {
       this.userInfo = data
-      console.log(data);
     })  
   }
 

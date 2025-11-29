@@ -1,5 +1,15 @@
-
-
-<img [src]="userInfo.avatar" alt="">
-
-<h1>welcome</h1>
+<section class="profile">
+  <img class="profile__bg-wallpaper" src="/bg-wallpaper.png" alt="">
+    <div class="profile__user-info-container">
+      <img class="profile__avatar" [src]="userInfo.avatar" alt="">
+      <div class="profile__user-info">
+        <h1 class="profile__username">{{userInfo.firstName}} {{userInfo.lastName}}</h1>
+        <p class="profile__lorem-text">Lorem ipsum dolor sit amet adipisicing.</p>
+        <div class="profile__icon-container">
+          <span class="profile__location"><i class="fa-solid fa-location-dot"></i> {{userInfo.address}}</span>
+          <span class="profile__phone"><i class="fa-solid fa-phone"></i> {{userInfo.phone}}</span>
+          <span class="profile__email"><i class="fa-solid fa-envelope"></i> {{userInfo.email}}</span>
+        </div>
+      </div>
+    </div>
+</section>

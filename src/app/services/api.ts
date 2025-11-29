@@ -55,4 +55,19 @@ export class Api {
   auth() {
     return this.api.get(`https://api.everrest.educata.dev/auth`, {headers: {Authorization: `Bearer ${this.cookie.get('user')}`}})
   }
+
+
+  //cart
+  cart(){
+    return this.api.get("https://api.everrest.educata.dev/shop/cart", {headers: {Authorization: `Bearer ${this.cookie.get('user')}`}})
+  }
+  addNewCartProduct(body:any){
+    return this.api.post("https://api.everrest.educata.dev/shop/cart/product", body, {headers: {Authorization: `Bearer ${this.cookie.get('user')}`}})
+  }
+  changeCartProduct(info:any){
+    return this.api.patch("https://api.everrest.educata.dev/shop/cart/product", info, {headers: {Authorization: `Bearer ${this.cookie.get('user')}`}})
+  }
+  deleteWholeCart(){
+    return this.api.delete("https://api.everrest.educata.dev/shop/cart", {headers: {Authorization: `Bearer ${this.cookie.get('user')}`}})
+  }
 }

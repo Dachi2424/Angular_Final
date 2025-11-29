@@ -13,10 +13,10 @@
     } 
     @else if (isLoggedIn) {
       <div class="header__profile-container" routerLink="/profile">
-        @if (userInfo) {
-          <img class="header__user-avatar" [src]="userInfo.avatar" alt="">
-          <span class="header__username">{{userInfo.firstName}}</span>
-        }
+        
+          <img class="header__user-avatar" [src]="userInfo?.avatar" alt="">
+          <span class="header__username">{{userInfo?.firstName}}</span>
+        
       </div>
       <div class="header__logout-container" (click)="logOut()">
         <i class="fa-solid fa-arrow-right-from-bracket header__logout-icon"></i>

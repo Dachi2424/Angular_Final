@@ -2,17 +2,17 @@
   <div class="product__grid-container">
     <div class="product__images-container">
       <div class="product__main-image-container">
-        <img class="product__main-image" [src]="selectedImage == -1 ? product.thumbnail : selectedImage >= 0 ? product.images[selectedImage] : null" alt="" (error)="$event.target.src='/not_found.png'">
+          <img class="product__main-image" [src]="selectedImage == -1 ? product?.thumbnail : selectedImage >= 0 ? product.images[selectedImage] : null" alt="" (error)="$event.target.src='/not_found.png'">
       </div> <!-- .product__main-image-container -->
       <div class="product__side-images-container">
-          <img (click)="setSelectedImage(-1)" [class.product__side-image--active]="selectedImage == -1" class="product__side-image" [src]="product.thumbnail" alt="" (error)="$event.target.src='/not_found.png'">
-        @for (image of product.images; track $index) {
+          <img (click)="setSelectedImage(-1)" [class.product__side-image--active]="selectedImage == -1" class="product__side-image" [src]="product?.thumbnail" alt="" (error)="$event.target.src='/not_found.png'">
+        @for (image of product?.images; track $index) {
           <img (click)="setSelectedImage($index)" [class.product__side-image--active]="$index == selectedImage" class="product__side-image" [src]="image" alt="" (error)="$event.target.src='/not_found.png'">
         }
       </div> <!-- .product__side-images-container -->
     </div> <!-- .product__images-container -->
     <div class="product__info-container">
-      <h1 class="product__title">{{product.title}}</h1>
+      <h1 class="product__title">{{product?.title}}</h1>
       <div class="product__rating-container">
         <span class="product__rating-text">rating ({{rating.toFixed(2)}}/5): </span>
         @for (item of stars; track $index) {
@@ -25,14 +25,14 @@
         }
       </div> <!-- .product__rating-container -->
 
-      @if (product.stock >= 1) {
+      @if (product?.stock >= 1) {
         <div class="product__stock-container">
           <i class="fa-solid fa-check product__stock-check"></i>
           <span class="product__stock product__stock--true">In Stock</span>
         </div>
       }
       
-      @else if (product.stock <= 0) {
+      @else if (product?.stock <= 0) {
         <div class="product__stock-container">
           <i class="fa-solid fa-xmark product__stock-x"></i>
           <span class="product__stock product__stock--false">Not In Stock</span>
@@ -40,32 +40,41 @@
       }
 
       <ul class="product__info-ul">
-        <li class="product__info-li">Category: {{product.category.name}}</li>
-        <li class="product__info-li">Brand: {{product.brand}}</li>
+        <li class="product__info-li">Category: {{product?.category.name}}</li>
+        <li class="product__info-li">Brand: {{product?.brand}}</li>
       </ul>
       <hr>
-      <p class="product__description">{{product.description}}</p>
+      <p class="product__description">{{product?.description}}</p>
     </div> <!-- .product__info-container -->
     <div class="product__cart-container">
-      @if (product.price.discountPercentage > 0) {
-        <span class="product__discountPercentage">-{{product.price.discountPercentage}}%</span>
+      @if (product?.price.discountPercentage > 0) {
+        <span class="product__discountPercentage">-{{product?.price.discountPercentage}}%</span>
       }
       <div class="product__price-container">
-        @if (product.price.discountPercentage == 0) {
+        @if (product?.price.discountPercentage == 0) {
           <span class="product__price product__price--current">{{product.price.current}}</span>
         }
-        @else if (product.price.discountPercentage > 0) {
+        @else if (product?.price.discountPercentage > 0) {
           <span class="product__price product__price--current">{{product.price.current}}{{product.price.currency}}</span>
           <span class="product__price product__price--old">{{product.price.beforeDiscount}}{{product.price.currency}}</span>
         }
       </div>
       <div class="product__quantity-container">
-        <button class="product__quantity-button">-</button>
-        <span class="product__cart-quantity">1</span>
-        <button class="product__quantity-button">+</button>
+        <button class="product__quantity-button" (click)="decreaseQuantity(productQuantity)">-</button>
+        <span class="product__cart-quantity">{{productQuantity}}</span>
+        <button class="product__quantity-button" (click)="increaseQuantity(productQuantity)">+</button>
       </div>
-      <button class="product__addtocart-button"><i class="fa-solid fa-basket-shopping product__cart-icon"></i> Add to Cart</button>
-      <p class="product__warranty-text" ><i class="fa-solid fa-building-shield"></i> Warranty: <span class="product__warranty">{{product.warranty}} {{product.warranty == 1 ? 'Year' : product.warranty > 1 ? 'Years' : ''}}</span></p>
+      <button [class.product__addtocart-button--success]="addToCartSuccessText" (click)="cartButton(productId)" class="product__addtocart-button"><i class="fa-solid fa-basket-shopping product__cart-icon"></i> Add to Cart</button>
+      <p class="product__warranty-text" ><i class="fa-solid fa-building-shield"></i> Warranty: <span class="product__warranty">{{product?.warranty}} {{product?.warranty == 1 ? 'Year' : product?.warranty > 1 ? 'Years' : ''}}</span></p>
+      @if (!authorizedCart) {
+        <p class="product__fail-text">Please <span class="product__signin-link" routerLink="/signin">Sign In</span> to your account to shop</p>
+      }
+      @if(addToCartErrorText) {
+        <p class="product__cart-error-text">{{addToCartErrorText}}</p>
+      }
+      @if(addToCartSuccessText) {
+        <p class="product__cart-success-text">{{addToCartSuccessText}}</p>
+      }
     </div>
   </div> <!-- .product__grid-container -->
 </section> <!-- .product -->

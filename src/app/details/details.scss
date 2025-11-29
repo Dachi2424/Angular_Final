@@ -119,10 +119,10 @@
     position: sticky;
     top: 105px;
     width: 100%;
-    height: 75%;
+    min-height: 80%;
     border: 1px solid gray;
     border-radius: 5px;
-    padding: 40px 30px;
+    padding: 40px 30px 20px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -185,6 +185,20 @@
     border: 2px solid #C29115;
     font-size: 17px;
     cursor: pointer;
+    transition: .3s;
+    &--success{
+      background-color: green;
+      border: 2px solid rgb(0, 90, 0);
+      transition: .3s;
+      color: white;
+      pointer-events: none;
+    }
+    &--success::after{
+      font-family: "Font Awesome 7 Free"; /* or 5 if you're using FA5 */
+      font-weight: 900;                   /* required for solid icons */
+      content: "\f00c";
+      margin-left: 6px;
+    }
   }
   &__cart-icon{
     font-size: 20px;
@@ -198,6 +212,24 @@
   &__warranty{
     font-size: 26px;
     font-weight: 600;
+    color: green;
+  }
+  &__fail-text{
+    color: black;
+    font-weight: 400;
+    font-size: 18px;
+  }
+  &__signin-link{
+    color: #C29115;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  &__cart-error-text{
+    color :red;
+    
+  }
+  &__cart-success-text{
     color: green;
   }
 }
