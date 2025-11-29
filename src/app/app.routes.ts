@@ -5,6 +5,7 @@ import { Details } from './details/details';
 import { Signin } from './signin/signin';
 import { Signup } from './signup/signup';
 import { Profile } from './profile/profile';
+import { Checkout } from './checkout/checkout';
 
 export const routes: Routes = [
   {path: "", component: Home},
@@ -13,4 +14,5 @@ export const routes: Routes = [
   {path: "signin", component: Signin},
   {path: "signup", component: Signup},
   {path: "profile", component: Profile},
+  {path: "checkout", component: Checkout},
 ];

@@ -1,0 +1,127 @@
+.checkout{
+  padding: 30px 120px;
+  &__heading{
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 40px;
+  }
+  &__main-container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    
+  }
+  &__cart-container{
+    width: 70%;
+    padding: 30px 30px;
+    box-shadow: 0 0 10px gray inset;
+  }
+  &__upper-side{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    padding-bottom: 30px;
+  }
+  &__cart-text{
+    font-weight: 600;
+  }
+  &__quantity-text{
+    font-weight: 600;
+    font-size: 20px;
+  }
+  &__lower-side{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0 10px;
+  }
+  &__product-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 5fr 3fr 2fr 1fr;
+    gap: 10px;
+    grid-template-rows: 120px;
+    align-items: center;
+  }
+  &__product-image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    box-shadow: 0 0 10px lightgray;
+    border-radius: 5px;
+  }
+  &__product-div{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  &__product-category{
+    color: gray;
+  }
+  &__product-title{
+    font-weight: 600;
+  }
+  &__quantity-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  &__quantity-btn{
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    background-color: #F7B81B;
+    border: 2px solid #E19410;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  &__product-quantity{
+    width: 30px;
+    text-align: center;
+  }
+
+
+
+
+
+
+
+
+  &__summary-container{
+    width: 30%;
+    background-color: #DDDDDD;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    box-shadow: 0 0 10px gray inset;
+  }
+  &__summary-text{
+    font-weight: 600;
+  }
+  &__summary-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__summary-item-quantity{
+    font-size: 20px;
+    font-weight: 600;
+  }
+  &__summary-price{
+    color: green;
+    font-weight: 600;
+    font-size: 24px;
+  }
+  &__checkout-button{
+    font-size: 16px;
+    background-color: #F7B81B;
+    border: 2px solid #E19410;
+    border-radius: 5px;
+    height: 40px;
+    cursor: pointer;
+  }
+}

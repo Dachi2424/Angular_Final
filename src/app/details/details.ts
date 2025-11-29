@@ -15,9 +15,9 @@ export class Details implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.getId()
-    this.deleteCart()
+    
   }
-  //droebiti funqcia:
+
   deleteCart(){
     this.service.deleteWholeCart().subscribe()
   }
@@ -100,7 +100,20 @@ export class Details implements OnInit, OnDestroy{
         this.addToCartSuccessText = "Product Successfully added to cart! go to checkout"
       },
       error:(err) =>  {
-        this.addToCartErrorText = err.error.error
+        if((err.error.error)?.includes("use patch")){
+          this.service.updateCartProduct(info).subscribe({
+            next: (data:any) => {
+              console.log("patch works:",data);
+              this.addToCartSuccessText = "Product Successfully added to cart! go to checkout"
+            },
+            error: (patchErr) => {
+              this.addToCartErrorText = patchErr.error.error
+            }
+          })
+        }
+        else{
+          this.addToCartErrorText = err.error.error
+        }
       }
     })
   }

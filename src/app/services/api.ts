@@ -64,7 +64,7 @@ export class Api {
   addNewCartProduct(body:any){
     return this.api.post("https://api.everrest.educata.dev/shop/cart/product", body, {headers: {Authorization: `Bearer ${this.cookie.get('user')}`}})
   }
-  changeCartProduct(info:any){
+  updateCartProduct(info:any){
     return this.api.patch("https://api.everrest.educata.dev/shop/cart/product", info, {headers: {Authorization: `Bearer ${this.cookie.get('user')}`}})
   }
   deleteWholeCart(){
