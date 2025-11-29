@@ -36,6 +36,7 @@ export class Navbar implements OnInit{
       this.cookie.delete('user');
       this.loggedInService.updateLoggedInStatus()
       this.router.navigate(['/'])
+      this.hideMenu()
     }
   }
 

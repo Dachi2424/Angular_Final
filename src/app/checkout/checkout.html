@@ -15,7 +15,7 @@
             <span class="checkout__product-title">{{product.title}}</span>
           </div>
           <div class="checkout__quantity-container">
-            <button class="checkout__quantity-btn" (click)="decreaseQuantity(product._id, productArray[$index].quantity)">-</button>
+            <button class="checkout__quantity-btn" (click)="decreaseQuantity(product._id, productArray[$index].quantity)" [disabled]="product.cartQuantity == 1">-</button>
             <span class="checkout__product-quantity">{{product.cartQuantity}}</span>
             <button class="checkout__quantity-btn" (click)="increaseQuantity(product._id, productArray[$index].quantity)">+</button>
           </div>

@@ -57,16 +57,13 @@ export class Checkout implements OnInit{
   })
   }
 
-  calculateTotal() {
-    console.log(this.cartProductsArray);
-    
+  calculateTotal() {  
     this.totalPrice = this.cartProductsArray.reduce((sum, product) => {
       const price = Number(product.price.current) || 0
       const quantity = Number(product.cartQuantity) || 0
       return sum + (price * quantity)
     }, 0)
-    console.log(this.totalPrice);
-    
+    console.log(this.totalPrice);   
   }
 
   decreaseQuantity(productId: any, quantity: any){
@@ -78,7 +75,6 @@ export class Checkout implements OnInit{
       // Update server then update both local arrays so future clicks use the new quantity
       this.service.updateCartProduct(info).subscribe({
         next: () => {
-          console.log("successfully changed");
           // update cartProductsArray (UI)
           const product = this.cartProductsArray.find(p => p.productId === productId);
           if(product) {
@@ -103,7 +99,6 @@ export class Checkout implements OnInit{
     // Update server and then synchronize local arrays
     this.service.updateCartProduct(info).subscribe({
       next: () => {
-        console.log("successfully changed");
 
         // update cartProductsArray (UI)
         const product = this.cartProductsArray.find(p => p.productId === productId);
@@ -124,7 +119,6 @@ export class Checkout implements OnInit{
     this.service.deleteCartId(id).subscribe({
       next: () => {
         this.getAllCart()
-        console.log("deleted")
       },
       error: (err) => {console.log("not deleted(error)")}
     })
@@ -137,7 +131,6 @@ export class Checkout implements OnInit{
       next: () => {
         this.cartProductsArray = []
         this.productArray = []
-        console.log("checkout success")
         alert("checkout was successful! please come again!")
         this.router.navigate(['/'])
       },

@@ -27,7 +27,7 @@
     </div>
     <h2 class="filter__heading">Rating</h2>
     <input class="filter__rating-input" type="range" min="1" max="5" [(ngModel)]="rating">
-    <button class="filter__filter-button" (click)="filterProducts()">Filter</button>
+    <button class="filter__filter-button" (click)="filterProducts(); showFilter = !showFilter">Filter</button>
   </aside>
   <div class="main-container">
     <div class="category-container">

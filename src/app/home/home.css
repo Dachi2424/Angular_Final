@@ -85,6 +85,9 @@
   border-radius: 5px;
   font-size: 16px;
 }
+.filter__xmark {
+  display: none;
+}
 
 .main-container {
   min-height: 100vh;
@@ -390,6 +393,7 @@
     transition: 0.3s;
   }
   .filter__xmark {
+    display: unset;
     position: absolute;
     top: 20px;
     right: 20px;

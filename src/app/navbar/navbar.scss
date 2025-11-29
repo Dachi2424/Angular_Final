@@ -171,5 +171,38 @@
       right: 30px;
       font-size: 24px;
     }
+    &__signup-container{
+      &--mobile{
+        position: absolute;
+        top: 80px;
+        left: 20px;
+      }
+    }
+    &__signin-container{
+      &--mobile{
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+    }
+    &__mobile-ul{
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 180px;
+      padding: 10px 40px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    &__mobile-li{
+      cursor: pointer;
+      font-size: 20px;
+      &--active{
+        color: #E19410;
+      }
+    }
   }
 }

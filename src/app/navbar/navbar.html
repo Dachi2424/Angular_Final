@@ -13,8 +13,8 @@
     } 
     @else if (isLoggedIn) {
       <div class="header__profile-container" routerLink="/profile">
-          <img class="header__user-avatar" [src]="userInfo?.avatar" alt="">
-          <span class="header__username">{{userInfo?.firstName}}</span>
+          <img class="header__user-avatar" [src]="userInfo.avatar" alt="">
+          <span class="header__username">{{userInfo.firstName}}</span>
       </div>
       <div class="header__logout-container" (click)="logOut()">
         <i class="fa-solid fa-arrow-right-from-bracket header__logout-icon"></i>
@@ -29,7 +29,7 @@
   <div #menu class="header__mobile-menu">
     <i class="fa-solid fa-xmark header__xmark" (click)="hideMenu()"></i>
      @if (isLoggedIn) {
-      <div class="header__profile-container header__profile-container--mobile" routerLink="/profile">
+      <div (click)="hideMenu()" class="header__profile-container header__profile-container--mobile" routerLink="/profile">
           <img class="header__user-avatar header__user-avatar--mobile" [src]="userInfo?.avatar" alt="">
           <span class="header__username header__username--mobile">{{userInfo?.firstName}}</span>
       </div>
@@ -38,6 +38,20 @@
         <span class="header__logout-text">Log Out</span>
       </div>
     }
+    @else if(!isLoggedIn) {
+      <div (click)="hideMenu()" class="header__signin-container header__signin-container--mobile" routerLink="/signin" routerLinkActive="header__signin-container--active">
+        <i class="fa-regular fa-user"></i>
+        <span class="header__signin-text">Sign In</span>
+      </div>
+      <div (click)="hideMenu()" class="header__signup-container header__signup-container--mobile" routerLink="/signup" routerLinkActive="header__signup-container--active">
+        <i class="fa-regular fa-id-badge"></i>
+        <span class="header__signup-text">Sign Up</span>
+      </div>
+    } 
+    <ul class="header__mobile-ul">
+      <li (click)="hideMenu()" class="header__mobile-li" routerLink="/" routerLinkActive="header__mobile-li--active" [routerLinkActiveOptions]="{exact: true}">Home</li>
+      <li (click)="hideMenu()" class="header__mobile-li" routerLink="/checkout" routerLinkActive="header__mobile-li--active">Checkout</li>
+    </ul>
   </div>
 </header>
 <div class="just-to-take-bg-space"></div>
