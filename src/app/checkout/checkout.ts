@@ -125,9 +125,12 @@ export class Checkout implements OnInit{
   }
 
 
+  public emptyCartError: boolean = false
+
   public dissableCheckout!:boolean;
   checkoutCart(){
-    this.service.checkout().subscribe({
+    if(this.productArray.length > 0){
+      this.service.checkout().subscribe({
       next: () => {
         this.cartProductsArray = []
         this.productArray = []
@@ -141,5 +144,9 @@ export class Checkout implements OnInit{
         }
       }
     })
+  }  
+  else {
+    this.emptyCartError = true
+  }
   }
 }

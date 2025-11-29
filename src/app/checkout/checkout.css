@@ -92,6 +92,13 @@
 .checkout__empty-text {
   text-align: center;
 }
+.checkout__empty-text--red {
+  color: red;
+}
+.checkout__empty-link {
+  text-decoration: underline;
+  cursor: pointer;
+}
 .checkout__shopping-link {
   color: #E19410;
   font-weight: 600;

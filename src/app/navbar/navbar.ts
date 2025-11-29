@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild, viewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { Router, RouterModule } from "@angular/router";
 import { LoggedIn } from '../services/logged-in';
 import { Api } from '../services/api';
@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
   selector: 'app-navbar',
   imports: [RouterModule],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.scss',
+  styleUrls: ['./navbar.scss'],
 })
 export class Navbar implements OnInit{
   public isLoggedIn = false;
@@ -25,8 +25,9 @@ export class Navbar implements OnInit{
 
   public userInfo:any;
   getUserInfo(){  
-    this.service.auth().subscribe( (data:any) => {
-      this.userInfo = data
+    this.service.auth().subscribe({
+      next: (data:any) => this.userInfo = data,
+      error: () => {console.log("no token")}
     })  
   }
 

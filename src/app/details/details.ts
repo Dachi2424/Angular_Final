@@ -39,7 +39,7 @@ export class Details implements OnInit, OnDestroy{
 
   public product:any;
   public stars:any;
-  public rating!:number;
+  public rating!: number;
   getDetailedInfo() {
     this.service.productWithId(this.productId).pipe(takeUntil(this.destroy$)).subscribe( (data:any) => {
       this.product = data;

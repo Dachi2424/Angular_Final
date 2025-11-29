@@ -13,8 +13,8 @@
     } 
     @else if (isLoggedIn) {
       <div class="header__profile-container" routerLink="/profile">
-          <img class="header__user-avatar" [src]="userInfo.avatar" alt="">
-          <span class="header__username">{{userInfo.firstName}}</span>
+          <img class="header__user-avatar" [src]="userInfo?.avatar" alt="">
+          <span class="header__username">{{userInfo?.firstName}}</span>
       </div>
       <div class="header__logout-container" (click)="logOut()">
         <i class="fa-solid fa-arrow-right-from-bracket header__logout-icon"></i>
@@ -38,7 +38,7 @@
         <span class="header__logout-text">Log Out</span>
       </div>
     }
-    @else if(!isLoggedIn) {
+    @else if (!isLoggedIn) {
       <div (click)="hideMenu()" class="header__signin-container header__signin-container--mobile" routerLink="/signin" routerLinkActive="header__signin-container--active">
         <i class="fa-regular fa-user"></i>
         <span class="header__signin-text">Sign In</span>
@@ -47,7 +47,7 @@
         <i class="fa-regular fa-id-badge"></i>
         <span class="header__signup-text">Sign Up</span>
       </div>
-    } 
+      }
     <ul class="header__mobile-ul">
       <li (click)="hideMenu()" class="header__mobile-li" routerLink="/" routerLinkActive="header__mobile-li--active" [routerLinkActiveOptions]="{exact: true}">Home</li>
       <li (click)="hideMenu()" class="header__mobile-li" routerLink="/checkout" routerLinkActive="header__mobile-li--active">Checkout</li>

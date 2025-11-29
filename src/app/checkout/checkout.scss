@@ -91,6 +91,13 @@
   }
   &__empty-text{
     text-align: center;
+    &--red{
+      color: red;
+    }
+  }
+  &__empty-link{
+    text-decoration: underline;
+    cursor: pointer;
   }
   &__shopping-link{
     color: #E19410;
@@ -177,12 +184,6 @@
       grid-template-rows: 120px;
       align-items: center;
     }
-    &__product-image{
-
-    }
-    &__product-div{
-
-    }
     &__product-title{
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -190,9 +191,6 @@
       -webkit-box-orient: vertical;
       height: 40px;
       overflow: hidden;
-    }
-    &__quantity-container{
-      
     }
   }
 }

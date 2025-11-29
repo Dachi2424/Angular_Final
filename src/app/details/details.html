@@ -14,7 +14,7 @@
     <div class="product__info-container">
       <h1 class="product__title">{{product?.title}}</h1>
       <div class="product__rating-container">
-        <span class="product__rating-text">rating ({{rating.toFixed(2)}}/5): </span>
+        <span class="product__rating-text">rating ({{ rating.toFixed(2)}}/5): </span>
         @for (item of stars; track $index) {
           <i class="fa-solid fa-star product__star"></i>
         }
