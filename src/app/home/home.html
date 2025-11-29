@@ -3,7 +3,8 @@
   </section>
 </main>
 <section class="wrapper">
-  <aside class="filter">
+  <aside [class.filter--mobile]="showFilter" #filter class="filter">
+    <i (click)="showFilter = !showFilter" class="fa-solid fa-xmark filter__xmark"></i>
     <h2 class="filter__heading">Search Here</h2>
     <input class="filter__search-input" type="text" placeholder="Search..." [(ngModel)]="keywords">
     <h2 class="filter__heading">Category</h2>
@@ -40,6 +41,7 @@
           <span class="category-container__category-name">{{category.name}}</span>
         </div>
       }
+      <span (click)="showFilter = !showFilter" class="category-container__filter-button"><i class="fa-solid fa-filter"></i> filter</span>
     </div>
     <div class="products-container">
       @for (product of allProducts; track $index) {

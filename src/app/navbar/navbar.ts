@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, viewChild } from '@angular/core';
 import { Router, RouterModule } from "@angular/router";
 import { LoggedIn } from '../services/logged-in';
 import { Api } from '../services/api';
@@ -14,7 +14,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class Navbar implements OnInit{
   public isLoggedIn = false;
 
-  constructor(public loggedInService: LoggedIn, public service: Api, public cookie: CookieService, public router: Router) { }
+  constructor(public loggedInService: LoggedIn, public service: Api, public cookie: CookieService, public router: Router, private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.loggedInService.loggedIn$.subscribe(status => {
@@ -37,6 +37,14 @@ export class Navbar implements OnInit{
       this.loggedInService.updateLoggedInStatus()
       this.router.navigate(['/'])
     }
+  }
+
+  @ViewChild('menu') menuDiv!: ElementRef
+  showMenu(){
+    this.renderer.addClass(this.menuDiv.nativeElement, 'header__mobile-menu--active')
+  }
+  hideMenu(){
+    this.renderer.removeClass(this.menuDiv.nativeElement, 'header__mobile-menu--active')
   }
 }
 

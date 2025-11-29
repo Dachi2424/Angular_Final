@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Api } from '../services/api';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { LoggedIn } from '../services/logged-in';
   styleUrl: './home.scss',
 })
 export class Home {
-  constructor(public service: Api, private router: Router) {
+  constructor(public service: Api, private router: Router, private renderer: Renderer2) {
     this.getAllCategories();
     this.getAllProducts();
     this.getAllBrands();
@@ -94,4 +94,6 @@ export class Home {
   goToDetails(productId:any){   
     this.router.navigate(['/details'], {queryParams: {id: productId}})
   }
+
+  public showFilter:boolean = false;
 }

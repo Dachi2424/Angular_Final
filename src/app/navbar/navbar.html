@@ -1,6 +1,6 @@
 <header class="header">
   <h1 class="header__logo" routerLink="/">SHOPPING MALL</h1>
-  <div class="header__account-info">
+  <div class="header__account-info header__account-info--desktop">
     @if (!isLoggedIn) {
       <div class="header__signin-container" routerLink="/signin" routerLinkActive="header__signin-container--active">
         <i class="fa-regular fa-user"></i>
@@ -13,10 +13,8 @@
     } 
     @else if (isLoggedIn) {
       <div class="header__profile-container" routerLink="/profile">
-        
           <img class="header__user-avatar" [src]="userInfo?.avatar" alt="">
           <span class="header__username">{{userInfo?.firstName}}</span>
-        
       </div>
       <div class="header__logout-container" (click)="logOut()">
         <i class="fa-solid fa-arrow-right-from-bracket header__logout-icon"></i>
@@ -24,6 +22,22 @@
       </div>
     }
     <i class="fa-solid fa-basket-shopping header__cart-logo" routerLink="/checkout"></i>
+    
+  </div>
+  <i class="fa-solid fa-basket-shopping header__cart-logo header__cart-logo--mobile" routerLink="/checkout"></i>
+  <i class="fa-solid fa-bars header__bars-logo" (click)="showMenu()"></i>
+  <div #menu class="header__mobile-menu">
+    <i class="fa-solid fa-xmark header__xmark" (click)="hideMenu()"></i>
+     @if (isLoggedIn) {
+      <div class="header__profile-container header__profile-container--mobile" routerLink="/profile">
+          <img class="header__user-avatar header__user-avatar--mobile" [src]="userInfo?.avatar" alt="">
+          <span class="header__username header__username--mobile">{{userInfo?.firstName}}</span>
+      </div>
+      <div class="header__logout-container" (click)="logOut()">
+        <i class="fa-solid fa-arrow-right-from-bracket header__logout-icon"></i>
+        <span class="header__logout-text">Log Out</span>
+      </div>
+    }
   </div>
 </header>
 <div class="just-to-take-bg-space"></div>
