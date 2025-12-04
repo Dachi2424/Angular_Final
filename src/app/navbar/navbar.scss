@@ -126,7 +126,7 @@
 @media screen and (max-width: 800px) {
   .header{
     justify-content: end;
-    padding-inline: 40px;
+    padding-inline: 30px;
     gap: 30px;
     &__logo{
       margin-right: auto;
@@ -134,7 +134,7 @@
     &__cart-logo{
       display: none;
       &--mobile{
-        display: unset !important;
+        display: none !important;
       }
     }
     &__account-info{
@@ -203,6 +203,25 @@
       &--active{
         color: #E19410;
       }
+    }
+  }
+}
+
+
+@media screen and (max-width: 425px) {
+  .header{
+    padding-inline: 20px 30px;
+    &__logo{
+      font-size: 24px;
+    }
+  }
+}
+
+
+@media screen and (max-width: 375px){
+  .header{
+    &__mobile-menu{
+      width: 100%;
     }
   }
 }

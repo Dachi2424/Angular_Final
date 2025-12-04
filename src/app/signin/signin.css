@@ -127,4 +127,42 @@
           backdrop-filter: blur(3px);
   z-index: 20;
   animation: backgrounds 0.5s ease-out forwards;
+}
+
+@media screen and (max-width: 600px) {
+  .signin__form {
+    width: 100%;
+    border: none;
+    margin: 30px auto 0;
+    padding: 20px 50px 20px;
+  }
+  .signin__error-text {
+    color: red;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .signin__error-text--valid {
+    color: green;
+  }
+  .signin__submit-button {
+    width: 100%;
+  }
+  .success {
+    width: 80%;
+    height: 200px;
+    border-radius: 5px;
+  }
+  .success__text {
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .signin__form {
+    margin: 30px auto 0;
+    padding: 20px 30px 20px;
+  }
+  .success {
+    width: 100%;
+    border-radius: 0;
+  }
 }/*# sourceMappingURL=signin.css.map */

@@ -16,4 +16,6 @@ export const profileGuardGuard: CanActivateFn = (route, state) => {
   else {
     return false
   }
+
+  //returns true if a user is authorized
 };

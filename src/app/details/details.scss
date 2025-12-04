@@ -244,23 +244,37 @@
 .rate-container{
   position: fixed;
   width: 300px;
-  height: 120px;
+  height: 300px;
+  padding: 50px 0 0;
   box-shadow: 0 0 10px gray;
   background-color: white;
   z-index: 13;
   left: 50%;
   top: 50%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   transform: translate(-50%, -50%);
   border-radius: 5px;
-  gap: 5px;
+  gap: 20px;
   &__xmark{
     position: absolute;
     right: 10px;
     top: 10px;
+    z-index: 3;
+    cursor: pointer;
+  }
+  &__text{
+    font-size: 18px;
+    &--secondary{
+      color:#C29115;
+      font-weight: 600;
+    }
+    &--error{
+      color: red;
+      font-weight: 600;
+    }
   }
   &__input{
     outline: none;
@@ -270,6 +284,15 @@
     width: 70px;
     font-size: 20px;
     padding: 0 10px 0;
+  }
+  &__submit-button{
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+    background-color: #FCBE21;
+    border: 2px solid #C29115;
+    border-radius: 5px;
+    cursor: pointer;
   }
 }
 

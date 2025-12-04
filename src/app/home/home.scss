@@ -12,7 +12,7 @@
 
 .wrapper{
   display: flex;
-  padding: 30px 15px 0 0;
+  padding: 30px 15px 0 15px;
   gap: 20px;
 }
 
@@ -468,5 +468,21 @@
       height: 60px;
       overflow: hidden;
     }
+  }
+}
+
+
+@media screen and (max-width: 375px){
+  .wrapper{
+    padding: 30px 0 30px;
+  }
+
+  .products-container{
+    padding: 20px 20px;
+    grid-auto-rows: minmax(0, 160vw);
+  }
+
+  .filter{
+    width: 100%;
   }
 }

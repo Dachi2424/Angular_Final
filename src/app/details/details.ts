@@ -3,10 +3,11 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Api } from '../services/api';
 import { Subject, takeUntil } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-details',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule],
   templateUrl: './details.html',
   styleUrl: './details.scss',
 })
@@ -119,19 +120,28 @@ export class Details implements OnInit, OnDestroy{
   }
 
 
-  rate(){
-    let info = {
-      "productId": this.productId,
-      "rate": 5
-    }
-    
-    this.service.rateProduct(info).subscribe({
-      next: (data:any) => {console.log(data, "wow success")},
-      error: (err) => {console.error(err)}
-    })
-  }
+  
 
   showRate(){
     
+  }
+
+  public ratingInput!:number;
+  public ratingError!:boolean;
+  makeRate(){
+    if(this.ratingInput >= 0 && this.ratingInput <= 5){
+      let info = {
+        productId: this.productId,
+        rate: this.ratingInput
+      }
+      this.service.rateProduct(info).subscribe({
+        next: (data:any) => {console.log("success", data)},
+        error: (err) => {console.log("error", err)},
+        complete: () => {this.ratingError = false}
+      })
+    }
+    else{
+      this.ratingError = true;
+    }    
   }
 }

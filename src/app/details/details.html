@@ -65,11 +65,18 @@
         <button class="product__quantity-button" (click)="increaseQuantity(productQuantity)">+</button>
       </div>
       <span class="product__rate" (click)="showRate()">Click to rate</span>
+
       <div class="rate-container">
         <i class="fa-solid fa-xmark rate-container__xmark"></i>
-        <label for="rate">Please rate from 0 to 5</label>
-        <input id="rate" type="number" class="rate-container__input">
+        <p class="rate-container__text">How do you like this product?</p>
+        <p class="rate-container__text rate-container__text--secondary">Please rate from 0 to 5</p>
+        <input class="rate-container__input" type="number" [(ngModel)]="ratingInput">
+        <button (click)="makeRate()" class="rate-container__submit-button">Submit</button>
+        @if (ratingError) {
+          <p class="rate-container__text rate-container__text--error">Invalid input</p>
+        }
       </div>
+
       <button [class.product__addtocart-button--success]="addToCartSuccessText" (click)="cartButton(productId)" class="product__addtocart-button"><i class="fa-solid fa-basket-shopping product__cart-icon"></i> Add to Cart</button>
       <p class="product__warranty-text" ><i class="fa-solid fa-building-shield"></i> Warranty: <span class="product__warranty">{{product?.warranty}} {{product?.warranty == 1 ? 'Year' : product?.warranty > 1 ? 'Years' : ''}}</span></p>
       @if (!authorizedCart) {
