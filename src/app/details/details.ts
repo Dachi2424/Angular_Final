@@ -16,7 +16,7 @@ export class Details implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.getId()
-    
+    window.scrollTo(0, 0)
   }
 
   deleteCart(){

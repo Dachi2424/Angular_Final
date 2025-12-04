@@ -33,12 +33,14 @@ export class Home {
   changePage(page:any){
     this.currentPage = page
     this.getAllProducts()
+    window.scrollTo(0, 0)
   }
 
   reducePage(){
     if(this.currentPage > 1){     
       this.currentPage--
       this.getAllProducts()
+      window.scrollTo(0, 0)
     }
   }
 
@@ -46,6 +48,7 @@ export class Home {
     if(this.currentPage < this.totalPages){
       this.currentPage++
       this.getAllProducts()
+      window.scrollTo(0, 0)
     }
   }
 
