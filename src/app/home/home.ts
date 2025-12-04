@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Api } from '../services/api';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,13 +10,16 @@ import { LoggedIn } from '../services/logged-in';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home {
+export class Home implements AfterViewInit{
   constructor(public service: Api, private router: Router, private renderer: Renderer2) {
     this.getAllCategories();
     this.getAllProducts();
     this.getAllBrands();
   }
   
+  ngAfterViewInit(): void {
+    window.scrollTo(0, 0)
+  }
 
   public allProducts:any;
   public currentPage:number = 1;

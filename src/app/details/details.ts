@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Api } from '../services/api';
 import { Subject, takeUntil } from 'rxjs';
@@ -11,11 +11,14 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './details.html',
   styleUrl: './details.scss',
 })
-export class Details implements OnInit, OnDestroy{
+export class Details implements OnInit, OnDestroy, AfterViewInit{
   constructor(public actr: ActivatedRoute, public service: Api, public cookie: CookieService){}
 
   ngOnInit() {
     this.getId()
+  }
+
+  ngAfterViewInit(): void {
     window.scrollTo(0, 0)
   }
 
