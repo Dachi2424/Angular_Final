@@ -66,14 +66,17 @@
       </div>
       <span class="product__rate" (click)="showRate()">Click to rate</span>
 
-      <div class="rate-container">
-        <i class="fa-solid fa-xmark rate-container__xmark"></i>
+      <div class="rate-container" #rate>
+        <i class="fa-solid fa-xmark rate-container__xmark" (click)="hideRate()"></i>
         <p class="rate-container__text">How do you like this product?</p>
-        <p class="rate-container__text rate-container__text--secondary">Please rate from 0 to 5</p>
+        <p class="rate-container__text rate-container__text--secondary">Please rate from 1 to 5</p>
         <input class="rate-container__input" type="number" [(ngModel)]="ratingInput">
         <button (click)="makeRate()" class="rate-container__submit-button">Submit</button>
         @if (ratingError) {
           <p class="rate-container__text rate-container__text--error">Invalid input</p>
+        }
+        @if (ratingError == false && ratingSuccess == true) {
+          <p class="rate-container__text rate-container__text--success">Thanks for your feedback</p>
         }
       </div>
 

@@ -251,7 +251,7 @@
   z-index: 13;
   left: 50%;
   top: 50%;
-  display: flex;
+  display: none;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
@@ -273,6 +273,10 @@
     }
     &--error{
       color: red;
+      font-weight: 600;
+    }
+    &--success{
+      color: green;
       font-weight: 600;
     }
   }

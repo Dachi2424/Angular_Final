@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Api } from '../services/api';
 import { Subject, takeUntil } from 'rxjs';
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './details.scss',
 })
 export class Details implements OnInit, OnDestroy, AfterViewInit{
-  constructor(public actr: ActivatedRoute, public service: Api, public cookie: CookieService){}
+  constructor(public actr: ActivatedRoute, public service: Api, public cookie: CookieService, public renderer: Renderer2){}
 
   ngOnInit() {
     this.getId()
@@ -125,22 +125,37 @@ export class Details implements OnInit, OnDestroy, AfterViewInit{
 
   
 
+
+  @ViewChild('rate') ratingContainer!: ElementRef;
   showRate(){
-    
+    this.renderer.setStyle(this.ratingContainer.nativeElement, "display", "flex")
+  }
+
+  hideRate(){
+    this.renderer.setStyle(this.ratingContainer.nativeElement, "display", "none")
   }
 
   public ratingInput!:number;
   public ratingError!:boolean;
+  public ratingSuccess!:boolean;
   makeRate(){
-    if(this.ratingInput >= 0 && this.ratingInput <= 5){
+    if(this.ratingInput >= 1 && this.ratingInput <= 5){
       let info = {
         productId: this.productId,
         rate: this.ratingInput
       }
       this.service.rateProduct(info).subscribe({
-        next: (data:any) => {console.log("success", data)},
+        next: (data:any) => {
+          console.log("success", data)
+        },
         error: (err) => {console.log("error", err)},
-        complete: () => {this.ratingError = false}
+        complete: () => {
+          this.ratingError = false;
+          this.ratingSuccess = true;
+          setTimeout(() => {
+            this.hideRate()
+          }, 3000)
+        }
       })
     }
     else{
