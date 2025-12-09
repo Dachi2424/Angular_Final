@@ -43,7 +43,7 @@ export class Details implements OnInit, OnDestroy, AfterViewInit{
 
   public product:any;
   public stars:any;
-  public rating!: number;
+  public rating!: any;
   getDetailedInfo() {
     this.service.productWithId(this.productId).pipe(takeUntil(this.destroy$)).subscribe( (data:any) => {
       this.product = data;
@@ -148,7 +148,12 @@ export class Details implements OnInit, OnDestroy, AfterViewInit{
         next: (data:any) => {
           console.log("success", data)
         },
-        error: (err) => {console.log("error", err)},
+        error: (err) => {
+          if((err.error.error).includes("Token not found")){
+            this.ratingError = true
+            
+          }
+        },
         complete: () => {
           this.ratingError = false;
           this.ratingSuccess = true;
@@ -158,8 +163,8 @@ export class Details implements OnInit, OnDestroy, AfterViewInit{
         }
       })
     }
-    else{
-      this.ratingError = true;
-    }    
+    // else{
+    //   this.ratingError = true;
+    // }    
   }
 }

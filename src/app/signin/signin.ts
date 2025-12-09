@@ -28,13 +28,16 @@ export class Signin {
       next: (data:any) => {
         this.cookie.set('user', data.access_token);
         this.loggedInService.updateLoggedInStatus();
-        this.success = true
+        this.success = true;
+        console.log("data:", data);
+        
         setTimeout(() => {
           this.authorized = true;
           this.router.navigate(['/']);
         }, 3000)
       },
       error: (err) => {
+        console.log(err);
         this.success = false;
       }
     })

@@ -20,5 +20,7 @@ export class LoggedIn {
   updateLoggedInStatus() {
     const status = this.cookie.check('user');
     this.loggedInSubject.next(status);
+    console.log(this.loggedInSubject);
+    
   }
 }

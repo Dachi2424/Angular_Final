@@ -14,13 +14,13 @@
     <div class="product__info-container">
       <h1 class="product__title">{{product?.title}}</h1>
       <div class="product__rating-container">
-        <span class="product__rating-text">rating ({{ rating.toFixed(2)}}/5): </span>
+        <span class="product__rating-text">rating ({{ rating?.toFixed(2)}}/5): </span>
         @for (item of stars; track $index) {
           <i class="fa-solid fa-star product__star"></i>
         }
-        @if (rating - stars.length >= 0.5) {
+        @if (rating - stars?.length >= 0.5) {
           <i class="fa-solid fa-star-half product__half-star"></i>
-        } @else if(rating >= 4.9) {
+        } @else if(rating >= 4.9 && rating != 5) {
           <i class="fa-solid fa-star product__star"></i>
         }
       </div> <!-- .product__rating-container -->
@@ -73,7 +73,7 @@
         <input class="rate-container__input" type="number" [(ngModel)]="ratingInput">
         <button (click)="makeRate()" class="rate-container__submit-button">Submit</button>
         @if (ratingError) {
-          <p class="rate-container__text rate-container__text--error">Invalid input</p>
+          <p class="rate-container__text rate-container__text--error">please <span class="rate-container__link" routerLink="/signin">Sign in</span> to rate</p>
         }
         @if (ratingError == false && ratingSuccess == true) {
           <p class="rate-container__text rate-container__text--success">Thanks for your feedback</p>

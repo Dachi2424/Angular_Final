@@ -272,13 +272,19 @@
       font-weight: 600;
     }
     &--error{
-      color: red;
-      font-weight: 600;
+      color: black;
+      font-weight: 300;
     }
     &--success{
       color: green;
       font-weight: 600;
     }
+  }
+  &__link{
+    color: #C29115;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
   }
   &__input{
     outline: none;
@@ -301,17 +307,31 @@
 }
 
 
-
-@media screen and (max-width: 1150px) {
-  
+@media screen and (max-width: 1250px){
   .product{
-      &__grid-container{
+    &__grid-container{
       position: relative;
       width: 100%;
       height: 100%;
       display: grid;
       grid-template-columns: 4fr 4fr 4fr;
-      grid-auto-rows: minmax(0, 38vw);
+      grid-auto-rows: minmax(0, 37vw);
+      gap: 10px;
+    }
+  }
+}
+
+
+@media screen and (max-width: 1150px) {
+  
+  .product{
+    &__grid-container{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 4fr 4fr 4fr;
+      grid-auto-rows: minmax(0, 43.5vw);
       gap: 10px;
     }
     &__cart-container{
@@ -328,7 +348,7 @@
       height: 100%;
       display: grid;
       grid-template-columns: 4fr 4fr 4fr;
-      grid-auto-rows: minmax(0, 42vw);
+      grid-auto-rows: minmax(0, 50vw);
       gap: 10px;
     }  
   }
@@ -344,7 +364,7 @@
       height: 100%;
       display: grid;
       grid-template-columns: 3fr 4fr;
-      grid-auto-rows: minmax(0, 50vw);
+      grid-auto-rows: minmax(0, 60vw);
       gap: 100px 20px;
     }  
     &__info-container{
@@ -374,7 +394,7 @@
       height: 100%;
       display: grid;
       grid-template-columns: 3fr 4fr;
-      grid-auto-rows: minmax(0, 65vw);
+      grid-auto-rows: minmax(0, 70vw);
       gap: 100px 20px;
     }
   }  
@@ -390,11 +410,35 @@
       height: 100%;
       display: grid;
       grid-template-columns: 1fr;
-      grid-auto-rows: minmax(0, 75vw);
+      grid-auto-rows: minmax(0, 85vw);
       gap: 40px;
     }
     &__cart-container{
       grid-column: 1 / 2;
     }
   }  
+}
+
+
+
+@media screen and (max-width: 500px){
+  .product{
+    &__grid-container{
+      padding: 10px;
+      grid-auto-rows: unset;
+      gap: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 375px){
+  .product{
+    padding: 10px;
+    &__warranty-text{
+      font-size: 16px;
+    }
+    &__warranty{
+      font-size: 22px;
+    }
+  }
 }

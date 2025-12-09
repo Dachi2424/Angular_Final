@@ -26,8 +26,14 @@ export class Navbar implements OnInit{
   public userInfo:any;
   getUserInfo(){  
     this.service.auth().subscribe({
-      next: (data:any) => this.userInfo = data,
-      error: () => {console.log("no token")}
+      next: (data:any) => {
+        this.userInfo = data        
+      },
+      error: () => {
+        console.log("no token")
+        console.log(this.userInfo);
+        
+      }
     })  
   }
 

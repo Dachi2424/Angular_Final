@@ -6,6 +6,7 @@ import { Signup } from './signup/signup';
 import { Profile } from './profile/profile';
 import { Checkout } from './checkout/checkout';
 import { profileGuardGuard } from './services/profile-guard-guard';
+import { NotFoundPage } from './not-found-page/not-found-page';
 
 export const routes: Routes = [
   {path: "", component: Home},
@@ -14,4 +15,5 @@ export const routes: Routes = [
   {path: "signup", component: Signup},
   {path: "profile", component: Profile, canActivate: [profileGuardGuard]},
   {path: "checkout", component: Checkout},
+  {path: "**", component: NotFoundPage},
 ];
