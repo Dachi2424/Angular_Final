@@ -51,16 +51,302 @@ html, body{
 
 }
 
-#n8n-chat{
-  .chat-window-toggle{
-    background-color: #c29115;
+
+
+#n8n-chat {
+  // Main container
+  &[data-v-app] {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
-  .chat-input-send-button:enabled{
-    color: #c29115;
+
+  // Chat window wrapper
+  .chat-window-wrapper {
+    &.n8n-chat {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
   }
-  .chat-message-from-user{
-    background-color: #F7B81B;
+
+  // Chat window (hidden by default)
+  .chat-window {
+    width: 400px;
+    max-width: calc(100vw - 40px);
+    height: 600px;
+    max-height: calc(100vh - 120px);
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    flex-direction: column;
+    margin-bottom: 16px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    // Default hidden state
+    display: none;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    pointer-events: none;
+
+    // When visible (remove display: none from inline styles)
+    &:not([style*="display: none"]) {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    // Alternative: use a class-based approach
+    &.visible {
+      display: flex !important;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    &.hidden {
+      display: none !important;
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      pointer-events: none;
+    }
+  }
+
+  // Main layout wrapper
+  .chat-layout {
+    &.chat-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+  }
+
+  // Header section
+  .chat-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #ffffff;
+
+    .chat-heading {
+      h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      opacity: 0.95;
+      line-height: 1.4;
+    }
+  }
+
+  // Chat body (messages area)
+  .chat-body {
+    flex: 1;
+    overflow-y: auto;
+    background: #f8f9fa;
+    padding: 20px;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #cbd5e0;
+      border-radius: 3px;
+
+      &:hover {
+        background: #a0aec0;
+      }
+    }
+  }
+
+  // Messages list
+  .chat-messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  // Individual message
+  .chat-message {
+    display: flex;
+    animation: slideIn 0.3s ease-out;
+
+    &.chat-message-from-bot {
+      justify-content: flex-start;
+
+      .message-content {
+        background: #ffffff;
+        color: #2d3748;
+        border-radius: 18px 18px 18px 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+    }
+
+    &.chat-message-from-user {
+      justify-content: flex-end;
+
+      .message-content {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #ffffff;
+        border-radius: 18px 18px 4px 18px;
+      }
+    }
+
+    .message-content {
+      max-width: 75%;
+      padding: 12px 16px;
+      word-wrap: break-word;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+
+  // Footer (input area)
+  .chat-footer {
+    padding: 16px 20px;
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  // Input container
+  .chat-input {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+    
+    textarea {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      resize: none;
+      transition: border-color 0.2s;
+
+      &:focus {
+        border-color: #667eea;
+      }
+
+      &::placeholder {
+        color: #a0aec0;
+      }
+    }
+
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+
+      &:hover:not(:disabled) {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+      }
+
+      &:active:not(:disabled) {
+        transform: scale(0.95);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  // Toggle button (floating chat icon) - FIXED POSITION
+  .chat-window-toggle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.3s;
+    flex-shrink: 0; // Prevent button from shrinking
+
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    svg {
+      width: 32px;
+      height: 32px;
+      color: #ffffff;
+      fill: currentColor;
+    }
+  }
+
+  // Animations
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    &[data-v-app] {
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+
+    .chat-window {
+      width: 100vw;
+      height: 100vh;
+      max-width: 100vw;
+      max-height: 100vh;
+      border-radius: 0;
+      margin-bottom: 0;
+    }
+
+    .chat-window-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+    }
   }
 }
-
-

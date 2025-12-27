@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from "./navbar/navbar";
-import '@n8n/chat/style.css';
+
 import { createChat } from '@n8n/chat';
 
 @Component({
@@ -30,7 +30,7 @@ export class App implements AfterViewInit{
       defaultLanguage: 'en',
       initialMessages: [
         'Hi there',
-        'How can I assist you today?'
+        "My name is Ally. I'm your personal AI assistant designed to provide you with any information about the SHOPPING MALL company. How can I help you?"
       ],
       i18n: {
         en: {
