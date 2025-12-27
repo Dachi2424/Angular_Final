@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Api } from '../services/api';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -13,10 +14,11 @@ export class Profile {
   }
 
   public userInfo:any;
+
+
   showMyInfo() {
     this.service.auth().subscribe( (data:any) => {
       this.userInfo = data
-      console.log(this.userInfo);
     })
   }
 }

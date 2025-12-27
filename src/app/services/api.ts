@@ -83,5 +83,10 @@ export class Api {
   checkout(){
     return this.api.post("https://api.everrest.educata.dev/shop/cart/checkout",null, {headers: {Authorization: `Bearer ${this.cookie.get('user')}`}})
   }
+
+
+  gmail(body:any){
+    return this.api.post("http://localhost:5678/webhook/0c1de7bd-f791-4f75-9d36-880bde4f0e89", body)
+  }
 }
 

@@ -41,3 +41,24 @@
 html{
   scroll-behavior: smooth;
 }
+
+html, body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+}
+
+#n8n-chat{
+  .chat-window-toggle{
+    background-color: #c29115;
+  }
+  .chat-input-send-button:enabled{
+    color: #c29115;
+  }
+  .chat-message-from-user{
+    background-color: #F7B81B;
+  }
+}
+
+

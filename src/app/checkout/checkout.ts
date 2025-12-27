@@ -2,23 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { map } from 'rxjs';
 import { Api } from '../services/api';
-import { errorContext } from 'rxjs/internal/util/errorContext';
 import { Router, RouterLink } from "@angular/router";
+
 
 @Component({
   selector: 'app-checkout',
   imports: [RouterLink],
   templateUrl: './checkout.html',
-  styleUrl: './checkout.scss',
+  styleUrls: ['./checkout.scss'],
 })
 export class Checkout implements OnInit{
   public productArray: any[] = []
   public cartProductsArray: any[] = []
   public totalPrice: number = 0;
   constructor(public service: Api, public router: Router) {}
+  
+
 
   ngOnInit(): void {
-    this.getAllCart()
+    this.getAllCart();
+    this.showMyInfo();
+  }
+
+
+  showMyInfo() {
+    this.service.auth().subscribe( (data:any) => {
+      this.gmail = data.email
+    })
   }
 
   getAllCart(){
@@ -45,6 +55,7 @@ export class Checkout implements OnInit{
       forkJoin(productRequests).subscribe({
         next: (products: any[]) => {
           this.cartProductsArray = products;
+          
           // console.log("cartProductArray:", this.cartProductsArray);
           this.calculateTotal()
         },
@@ -62,8 +73,7 @@ export class Checkout implements OnInit{
       const price = Number(product.price.current) || 0
       const quantity = Number(product.cartQuantity) || 0
       return sum + (price * quantity)
-    }, 0)
-    console.log(this.totalPrice);   
+    }, 0)  
   }
 
   decreaseQuantity(productId: any, quantity: any){
@@ -126,8 +136,8 @@ export class Checkout implements OnInit{
 
 
   public emptyCartError: boolean = false
-
   public dissableCheckout!:boolean;
+
   checkoutCart(){
     if(this.productArray.length > 0){
       this.service.checkout().subscribe({
@@ -148,5 +158,21 @@ export class Checkout implements OnInit{
   else {
     this.emptyCartError = true
   }
+  }
+
+  public gmail: string = ""
+
+  sendGmail(){
+    if(this.productArray.length > 0){
+      const data = {
+        mail: this.gmail,
+        productName: this.cartProductsArray[0].title
+      }
+
+      this.service.gmail(data).subscribe({
+        next: (data) => {console.log("Success:", data)},
+        error: (err) => console.log("Fail: ", err)
+      })
+    }
   }
 }

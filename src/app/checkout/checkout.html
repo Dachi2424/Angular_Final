@@ -39,7 +39,7 @@
         <span class="checkout__summary-price">{{totalPrice}}$</span>
       </div>
       <hr>
-      <button class="checkout__checkout-button" (click)="checkoutCart()" [disabled]="dissableCheckout">CHECKOUT</button>
+      <button class="checkout__checkout-button" (click)="checkoutCart(); sendGmail()" [disabled]="dissableCheckout">CHECKOUT</button>
       @if (emptyCartError) {
         <p class="checkout__empty-text checkout__empty-text--red">Your cart is empty. Go to <span class="checkout__empty-link" routerLink="/">home</span> page to start shopping</p>
       }
